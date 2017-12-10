@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Context>
+	<!--配置MySQL数据库的JNDI数据源-->
+	<Resource 
+		name="jdbc/mysql"
+		auth="Container"
+		type="com.mchange.v2.c3p0.ComboPooledDataSource"
+		factory="org.apache.naming.factory.BeanFactory" 
+		driverClass="com.mysql.jdbc.Driver"
+		jdbcUrl="jdbc:mysql://localhost:3306/homework"
+		user="root"
+		password="19971018cx"
+		idleConnectionTestPeriod="60"
+		maxPoolSize="20"
+		minPoolSize="2"
+		acquireIncrement="2" 
+/>
+</Context>
