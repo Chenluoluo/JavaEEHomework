@@ -1,8 +1,7 @@
 package cn.ciwest.model;
 
-public class Comment {
+public class Message {
 	private int number;
-	private int blognumber;
 	private String username;
 	private String content;
 	private String time;
@@ -13,14 +12,6 @@ public class Comment {
 
 	public void setNumber(int number) {
 		this.number = number;
-	}
-
-	public int getBlognumber() {
-		return blognumber;
-	}
-
-	public void setBlognumber(int blognumber) {
-		this.blognumber = blognumber;
 	}
 
 	public String getUsername() {
@@ -46,5 +37,4 @@ public class Comment {
 	public void setTime(String time) {
 		this.time = time;
 	}
-
 }

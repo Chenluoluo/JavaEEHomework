@@ -1,10 +1,13 @@
 package cn.ciwest.model;
 
+import java.sql.Blob;
+
 public class Picture {
 	private int number;
 	private String name;
-	private String picture;
+	private Blob picture;
 	private String type;
+	private String create_time;
 	private String author;
 
 	public int getNumber() {
@@ -23,11 +26,11 @@ public class Picture {
 		this.name = name;
 	}
 
-	public String getPicture() {
+	public Blob getPicture() {
 		return picture;
 	}
 
-	public void setPicture(String picture) {
+	public void setPicture(Blob picture) {
 		this.picture = picture;
 	}
 
@@ -39,6 +42,14 @@ public class Picture {
 		this.type = type;
 	}
 
+	public String getCreate_time() {
+		return create_time;
+	}
+
+	public void setCreate_time(String create_time) {
+		this.create_time = create_time;
+	}
+
 	public String getAuthor() {
 		return author;
 	}
@@ -46,4 +57,5 @@ public class Picture {
 	public void setAuthor(String author) {
 		this.author = author;
 	}
+
 }

@@ -12,6 +12,8 @@ public interface CommentDao {
 	public void modifyComment(Comment comment) throws Exception;
 
 	public void removeComment(int number) throws Exception;
+	
+	public List<Comment> getBlogComment(int blognumber) throws Exception;
 
 	public List<Comment> getAllComment() throws Exception;
 }

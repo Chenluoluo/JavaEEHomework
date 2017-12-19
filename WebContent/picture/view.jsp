@@ -10,7 +10,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>${ param.number }<fmt:message key="blog.view.title" /></title>
+<title>${ param.number }<fmt:message key="picture.view.title" /></title>
 <link rel="stylesheet" href="../static/css/uikit.min.css">
 <link rel="stylesheet" href="../static/css/uikit.gradient.min.css">
 <link rel="stylesheet" href="../static/css/awesome.css">
@@ -67,32 +67,29 @@
 			<sql:setDataSource dataSource="jdbc/mysql" var="mysql"
 				scope="request" />
 			<!-- 取得查询结果集 -->
-			<sql:query sql="select * from HW_Blog where number=?"
-				dataSource="${ mysql }" var="listBlog" scope="request">
+			<sql:query sql="select * from HW_Picture where number=?"
+				dataSource="${ mysql }" var="listPicture" scope="request">
 				<sql:param value="${ param.number }"></sql:param>
 			</sql:query>
-
 			<div class="uk-width-medium-3-4">
-				<!-- 输出 -->
-				<c:forEach var="blog" items="${ listBlog.rows }">
+				<c:forEach var="picture" items="${ listPicture.rows }">
 					<article class="uk-article">
 					<h2>
-						<a href="view.jsp?number=${ blog.number }&author=${ blog.author }">${ blog.title }</a>
+						<a
+							href="view.jsp?number=${ picture.number }&author=${ picture.author }">${ picture.name }</a>
 					</h2>
-					<p class="uk-article-meta">${ blog.author }
-						<fmt:message key="home.published_in" />
-						${ blog.create_time }
+					<p class="uk-article-meta">${ picture.author }
+						<fmt:message key="picture.picture.upload_in" />
+						${ picture.create_time }
 					</p>
 					<p>
-						<a id="modify" href="modify.jsp?number=${ blog.number }"
+						<a id="modify" href="modify.jsp?number=${ picture.number }"
 							class="uk-hidden"><fmt:message key="blog.view.modify" /></a> <a
-							id="remove" href="remove.do?number=${ blog.number }"
+							id="remove" href="remove.do?number=${ picture.number }"
 							class="uk-hidden" style="color: red"><fmt:message
 								key="blog.view.remove" /></a>
 					</p>
-					<!-- <p>文章内容</p> -->
-					<div class="post-body" itemprop="articleBody">${ blog.text }</div>
-					</article>
+					<img src="showimage.do?number=${ param.number }"> </article>
 				</c:forEach>
 				<hr class="uk-article-divider">
 				<div class="uk-width-medium-3-4">

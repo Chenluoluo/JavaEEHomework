@@ -1,5 +1,6 @@
 package cn.ciwest.service.impl;
 
+import java.io.InputStream;
 import java.util.List;
 
 import cn.ciwest.factory.DaoFactory;
@@ -9,15 +10,15 @@ import cn.ciwest.service.PictureServer;
 public class PictureServerImpl implements PictureServer {
 
 	@Override
-	public void createPicture(Picture picture) throws Exception {
+	public void createPicture(Picture picture, InputStream inputStream) throws Exception {
 		// TODO Auto-generated method stub
-		DaoFactory.createPictureDao().createPicture(picture);
+		DaoFactory.createPictureDao().createPicture(picture,inputStream);
 	}
 
 	@Override
-	public Picture getPicture(String name) throws Exception {
+	public Picture getPicture(int number) throws Exception {
 		// TODO Auto-generated method stub
-		return DaoFactory.createPictureDao().getPicture(name);
+		return DaoFactory.createPictureDao().getPicture(number);
 	}
 
 	@Override

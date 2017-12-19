@@ -14,12 +14,13 @@ public class CommentDaoImpl implements CommentDao {
 	@Override
 	public void createComment(Comment comment) throws Exception {
 		// TODO Auto-generated method stub
-		String sql = "insert into HW_Comment (username,content,time) values (?,?,?)";
+		String sql = "insert into HW_Comment (blognumber,username,content,time) values (?,?,?,?)";
 		Connection cn = ConnectionFactory.getConnection();
 		PreparedStatement ps = cn.prepareStatement(sql);
-		ps.setString(1, comment.getUsername());
-		ps.setString(2, comment.getContent());
-		ps.setString(3, comment.getTime());
+		ps.setInt(1, comment.getBlognumber());
+		ps.setString(2, comment.getUsername());
+		ps.setString(3, comment.getContent());
+		ps.setString(4, comment.getTime());
 		ps.execute();
 		ps.close();
 		cn.close();
@@ -29,14 +30,15 @@ public class CommentDaoImpl implements CommentDao {
 	public Comment getComment(int number) throws Exception {
 		// TODO Auto-generated method stub
 		Comment comment = null;
-		String sql="select * from HW_Comment where number=?";
-		Connection cn=ConnectionFactory.getConnection();
-		PreparedStatement ps=cn.prepareStatement(sql);
+		String sql = "select * from HW_Comment where number=?";
+		Connection cn = ConnectionFactory.getConnection();
+		PreparedStatement ps = cn.prepareStatement(sql);
 		ps.setInt(1, number);
-		ResultSet rs=ps.executeQuery();
-		if(rs.next()){
+		ResultSet rs = ps.executeQuery();
+		if (rs.next()) {
 			comment = new Comment();
 			comment.setNumber(number);
+			comment.setBlognumber(rs.getInt("Blognumber"));
 			comment.setUsername(rs.getString("Username"));
 			comment.setContent(rs.getString("Content"));
 			comment.setTime(rs.getString("Time"));
@@ -46,20 +48,21 @@ public class CommentDaoImpl implements CommentDao {
 		rs.close();
 		ps.close();
 		cn.close();
-		
+
 		return comment;
 	}
 
 	@Override
 	public void modifyComment(Comment comment) throws Exception {
 		// TODO Auto-generated method stub
-		String sql="update HW_Comment set username=?,content=?,time=? where number = ?";
-		Connection cn=ConnectionFactory.getConnection();
-		PreparedStatement ps=cn.prepareStatement(sql);
-		ps.setString(1, comment.getUsername());
-		ps.setString(2, comment.getContent());
-		ps.setString(3, comment.getTime());
-		ps.setInt(4, comment.getNumber());
+		String sql = "update HW_Comment set blognumber=?,username=?,content=?,time=? where number = ?";
+		Connection cn = ConnectionFactory.getConnection();
+		PreparedStatement ps = cn.prepareStatement(sql);
+		ps.setInt(1, comment.getBlognumber());
+		ps.setString(2, comment.getUsername());
+		ps.setString(3, comment.getContent());
+		ps.setString(4, comment.getTime());
+		ps.setInt(5, comment.getNumber());
 		ps.executeUpdate();
 		ps.close();
 		cn.close();
@@ -78,16 +81,41 @@ public class CommentDaoImpl implements CommentDao {
 	}
 
 	@Override
+	public List<Comment> getBlogComment(int blognumber) throws Exception {
+		// TODO Auto-generated method stub
+		List<Comment> commentList = new ArrayList<>();
+		String sql = "select * from HW_Comment where blognumber = ?";
+		Connection cn = ConnectionFactory.getConnection();
+		PreparedStatement ps = cn.prepareStatement(sql);
+		ps.setInt(1, blognumber);
+		ResultSet rs = ps.executeQuery();
+		while (rs.next()) {
+			Comment comment = new Comment();
+			comment.setNumber(rs.getInt("Number"));
+			comment.setBlognumber(rs.getInt("Blognumber"));
+			comment.setUsername(rs.getString("Username"));
+			comment.setContent(rs.getString("Content"));
+			comment.setTime(rs.getString("Time"));
+			commentList.add(comment);
+		}
+		rs.close();
+		ps.close();
+		cn.close();
+		return commentList;
+	}
+
+	@Override
 	public List<Comment> getAllComment() throws Exception {
 		// TODO Auto-generated method stub
 		List<Comment> commentList = new ArrayList<>();
-		String sql="select * from HW_Comment";
-		Connection cn=ConnectionFactory.getConnection();
-		PreparedStatement ps=cn.prepareStatement(sql);
-		ResultSet rs=ps.executeQuery();
-		while(rs.next()){
-			Comment comment=new Comment();
+		String sql = "select * from HW_Comment";
+		Connection cn = ConnectionFactory.getConnection();
+		PreparedStatement ps = cn.prepareStatement(sql);
+		ResultSet rs = ps.executeQuery();
+		while (rs.next()) {
+			Comment comment = new Comment();
 			comment.setNumber(rs.getInt("Number"));
+			comment.setBlognumber(rs.getInt("Blognumber"));
 			comment.setUsername(rs.getString("Username"));
 			comment.setContent(rs.getString("Content"));
 			comment.setTime(rs.getString("Time"));

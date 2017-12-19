@@ -33,6 +33,12 @@ public class CommentServerImpl implements CommentServer {
 	}
 
 	@Override
+	public List<Comment> getBlogComment(int blognumber) throws Exception {
+		// TODO Auto-generated method stub
+		return DaoFactory.createCommentDao().getBlogComment(blognumber);
+	}
+
+	@Override
 	public List<Comment> getAllComment() throws Exception {
 		// TODO Auto-generated method stub
 		return DaoFactory.createCommentDao().getAllComment();

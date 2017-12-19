@@ -21,17 +21,20 @@
 <body class="uk-height-1-1">
 	<nav class="uk-navbar uk-navbar-attached uk-margin-bottom">
 	<div class="uk-container uk-container-center">
-		<a href="#" class="uk-navbar-brand"><fmt:message
-				key="menu.blog" /></a>
+		<a href="#" class="uk-navbar-brand"><fmt:message key="menu.blog" /></a>
 		<ul class="uk-navbar-nav">
 			<li><a href="../home.jsp"><i class="uk-icon-home"></i> <fmt:message
 						key="menu.home" /></a></li>
 			<li><a href="edit.jsp"><i class="uk-icon-book"></i> <fmt:message
 						key="menu.edit" /></a></li>
-			<li><a href="../comment/comment.jsp"><i
-					class="uk-icon-align-left"></i> <fmt:message key="menu.comment" /></a></li>
+			<li><a href="../message/message.jsp"><i
+					class="uk-icon-align-left"></i> <fmt:message key="menu.message" /></a></li>
+			<li><a href="../message/write.jsp"><i class="uk-icon-edit"></i>
+					<fmt:message key="menu.write" /></a></li>
 			<li><a href="../picture/picture.jsp"><i class="uk-icon-file"></i>
-				<fmt:message key="menu.picture" /></a></li>
+					<fmt:message key="menu.picture" /></a></li>
+			<li><a href="../picture/upload.jsp"><i class="uk-icon-arrow-up"></i>
+					<fmt:message key="menu.upload" /></a></li>
 		</ul>
 		<div class="uk-navbar-flip">
 			<ul class="uk-navbar-nav">
@@ -60,7 +63,7 @@
 						<li><a href="../picture/picture.jsp"><fmt:message
 									key="menu.picture" /></a></li>
 						<li><a href="../comment/comment.jsp"><fmt:message
-									key="menu.comment" /></a></li>
+									key="menu.message" /></a></li>
 					</ul>
 				</div>
 			</div>
@@ -68,36 +71,45 @@
 				<form method="post" action="edit.do" class="uk-form uk-form-stacked">
 					<div class="uk-alert uk-alert-danger uk-hidden"></div>
 					<div class="uk-form-row">
-						<label class="uk-form-label"><fmt:message key="blog.edit.form_title" /></label>
+						<label class="uk-form-label"><fmt:message
+								key="blog.edit.form_title" /></label>
 						<div class="uk-form-controls">
-							<input v-model="title" name="title" type="text" placeholder="<fmt:message key="blog.edit.form_title" />"
+							<input v-model="title" name="title" type="text"
+								placeholder="<fmt:message key="blog.edit.form_title" />"
 								class="uk-width-1-1">
 						</div>
 					</div>
 					<div class="uk-form-row">
-						<label class="uk-form-label"><fmt:message key="blog.edit.form_type" /></label>
+						<label class="uk-form-label"><fmt:message
+								key="blog.edit.form_type" /></label>
 						<div class="uk-form-controls">
-							<textarea v-model="type" rows="1" name="type" placeholder="<fmt:message key="blog.edit.form_type" />"
+							<textarea v-model="type" rows="1" name="type"
+								placeholder="<fmt:message key="blog.edit.form_type" />"
 								class="uk-width-1-1" style="resize: none;"></textarea>
 						</div>
 					</div>
 					<div class="uk-form-row">
-						<label class="uk-form-label"><fmt:message key="blog.edit.form_decoration" /></label>
+						<label class="uk-form-label"><fmt:message
+								key="blog.edit.form_decoration" /></label>
 						<div class="uk-form-controls">
 							<textarea v-model="decoration" rows="4" name="decoration"
-								placeholder="<fmt:message key="blog.edit.form_decoration" />" class="uk-width-1-1" style="resize: none;"></textarea>
+								placeholder="<fmt:message key="blog.edit.form_decoration" />"
+								class="uk-width-1-1" style="resize: none;"></textarea>
 						</div>
 					</div>
 					<div class="uk-form-row">
-						<label class="uk-form-label"><fmt:message key="blog.edit.form_text" /></label>
+						<label class="uk-form-label"><fmt:message
+								key="blog.edit.form_text" /></label>
 						<div class="uk-form-controls">
-							<textarea v-model="text" rows="16" name="text" placeholder="<fmt:message key="blog.edit.form_text" />"
+							<textarea v-model="text" rows="16" name="text"
+								placeholder="<fmt:message key="blog.edit.form_text" />"
 								class="uk-width-1-1" style="resize: none;"></textarea>
 						</div>
 					</div>
 					<div class="uk-form-row">
 						<button type="submit" class="uk-button uk-button-primary">
-							<i class="uk-icon-save"></i> <fmt:message key="blog.edit.save" />
+							<i class="uk-icon-save"></i>
+							<fmt:message key="blog.edit.save" />
 						</button>
 						<a href="../home.jsp" class="uk-button"><i
 							class="uk-icon-times"></i> <fmt:message key="blog.edit.cancel" /></a>

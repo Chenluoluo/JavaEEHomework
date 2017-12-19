@@ -10,20 +10,12 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>${ param.number }<fmt:message key="blog.view.title" /></title>
+<title><fmt:message key="picture.picture.title" /></title>
 <link rel="stylesheet" href="../static/css/uikit.min.css">
 <link rel="stylesheet" href="../static/css/uikit.gradient.min.css">
 <link rel="stylesheet" href="../static/css/awesome.css">
 <script src="../static/js/jquery.min.js"></script>
 <script src="../static/js/uikit.min.js"></script>
-<script type="text/javascript">
-	$(function() {
-		if ('${ param.author }' == '${ user.getUsername() }') {
-			$("#modify").removeClass("uk-hidden");
-			$("#remove").removeClass("uk-hidden");
-		}
-	});
-</script>
 </head>
 <body class="uk-height-1-1">
 	<nav class="uk-navbar uk-navbar-attached uk-margin-bottom">
@@ -67,64 +59,34 @@
 			<sql:setDataSource dataSource="jdbc/mysql" var="mysql"
 				scope="request" />
 			<!-- 取得查询结果集 -->
-			<sql:query sql="select * from HW_Blog where number=?"
-				dataSource="${ mysql }" var="listBlog" scope="request">
-				<sql:param value="${ param.number }"></sql:param>
+			<sql:query sql="select * from HW_Picture " dataSource="${ mysql }"
+				var="listPicture" scope="request">
 			</sql:query>
-
 			<div class="uk-width-medium-3-4">
 				<!-- 输出 -->
-				<c:forEach var="blog" items="${ listBlog.rows }">
+				<c:forEach var="picture" items="${ listPicture.rows }">
+
 					<article class="uk-article">
 					<h2>
-						<a href="view.jsp?number=${ blog.number }&author=${ blog.author }">${ blog.title }</a>
+						<a
+							href="view.jsp?number=${ picture.number }&author=${ picture.author }">${ picture.name }</a>
 					</h2>
-					<p class="uk-article-meta">${ blog.author }
-						<fmt:message key="home.published_in" />
-						${ blog.create_time }
+					<p class="uk-article-meta">${ picture.author }
+						<fmt:message key="picture.picture.upload_in" />
+						${ picture.create_time }
 					</p>
 					<p>
-						<a id="modify" href="modify.jsp?number=${ blog.number }"
-							class="uk-hidden"><fmt:message key="blog.view.modify" /></a> <a
-							id="remove" href="remove.do?number=${ blog.number }"
-							class="uk-hidden" style="color: red"><fmt:message
-								key="blog.view.remove" /></a>
+						<img src="showimage.do?number=${ picture.number }" width="150px" height="100px">
 					</p>
-					<!-- <p>文章内容</p> -->
-					<div class="post-body" itemprop="articleBody">${ blog.text }</div>
-					</article>
-				</c:forEach>
-				<hr class="uk-article-divider">
-				<div class="uk-width-medium-3-4">
-					<h3>
-						<fmt:message key="blog.view.comment_title" />
-					</h3>
-					<article class="uk-comment"> <header
-						class="uk-comment-header"> <img
-						class="uk-comment-avatar uk-border-circle" width="50" height="50"
-						src="../static/img/user.png">
-					<h4 class="uk-comment-title">「Stay hungry. Stay foolish.」</h4>
-					</header>
-					<div class="uk-comment-body">
-						<form action="../comment/edit.do" method="post" id="form-comment"
-							class="uk-form">
-							<div class="uk-alert uk-alert-danger uk-hidden"></div>
-							<div class="uk-form-row">
-								<textarea name="context" rows="6"
-									placeholder="<fmt:message key="blog.view.comment_tip" />"
-									style="width: 100%; resize: none;"></textarea>
-							</div>
-							<div class="uk-form-row">
-								<button type="submit" class="uk-button uk-button-primary">
-									<i class="uk-icon-comment"></i>
-									<fmt:message key="blog.view.commented" />
-								</button>
-							</div>
-						</form>
-					</div>
+					<p>
+						<a
+							href="view.jsp?number=${ picture.number }&author=${ picture.author }"><fmt:message
+								key="picture.picture.view_picture" /><i
+							class="uk-icon-angle-double-right"></i></a>
+					</p>
 					</article>
 					<hr class="uk-article-divider">
-				</div>
+				</c:forEach>
 			</div>
 
 
