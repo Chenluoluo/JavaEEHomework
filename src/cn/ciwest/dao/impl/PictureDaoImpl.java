@@ -32,7 +32,7 @@ public class PictureDaoImpl implements PictureDao {
 	@Override
 	public Picture getPicture(int number) throws Exception {
 		// TODO Auto-generated method stub
-		String sql = "select * from hw_picture where number=?";
+		String sql = "select * from HW_picture where number=?";
 		Connection cn = ConnectionFactory.getConnection();
 		PreparedStatement ps = cn.prepareStatement(sql);
 		ps.setInt(1, number);
@@ -57,7 +57,14 @@ public class PictureDaoImpl implements PictureDao {
 	@Override
 	public void modifyPicture(Picture picture) throws Exception {
 		// TODO Auto-generated method stub
-
+		String sql = "update HW_picture set name = ? where number = ?";
+		Connection cn = ConnectionFactory.getConnection();
+		PreparedStatement ps = cn.prepareStatement(sql);
+		ps.setString(1, picture.getName());
+		ps.setInt(2, picture.getNumber());
+		ps.executeUpdate();
+		ps.close();
+		cn.close();
 	}
 
 	@Override

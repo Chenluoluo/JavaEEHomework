@@ -37,7 +37,6 @@ public class PictureShowImageAction extends HttpServlet {
 		int number = Integer.parseInt(request.getParameter("number"));
 		try {
 			Picture picture = ServiceFactory.createPictureServer().getPicture(number);
-			System.out.println("图片获取成功");
 			OutputStream out = response.getOutputStream();
 			out.write(picture.getPicture().getBytes(1, (int) picture.getPicture().length()));
 			out.flush();

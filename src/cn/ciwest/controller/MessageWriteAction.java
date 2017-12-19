@@ -12,20 +12,20 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import cn.ciwest.factory.ServiceFactory;
-import cn.ciwest.model.Blog;
+import cn.ciwest.model.Message;
 import cn.ciwest.model.User;
 
 /**
- * Servlet implementation class BlogEditAction
+ * Servlet implementation class MessageWriteAction
  */
-@WebServlet("/blog/edit.do")
-public class BlogEditAction extends HttpServlet {
+@WebServlet("/message/write.do")
+public class MessageWriteAction extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public BlogEditAction() {
+	public MessageWriteAction() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
@@ -41,29 +41,23 @@ public class BlogEditAction extends HttpServlet {
 
 		HttpSession session = request.getSession();
 
-		String title = request.getParameter("title");
-		String author = ((User) session.getAttribute("user")).getUsername();
-		String type = request.getParameter("type");
-		String decoration = request.getParameter("decoration");
-		String create_time = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
-		String alter_time = "";
-		String text = request.getParameter("text");
-		Blog blog = new Blog();
-		blog.setTitle(title);
-		blog.setAuthor(author);
-		blog.setType(type);
-		blog.setDecoration(decoration);
-		blog.setCreate_time(create_time);
-		blog.setAlter_time(alter_time);
-		blog.setText(text);
+		String username = ((User) session.getAttribute("user")).getUsername();
+		String content = request.getParameter("content");
+		String time = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
+
+		Message message = new Message();
+		message.setUsername(username);
+		message.setContent(content);
+		message.setTime(time);
+
 		try {
-			ServiceFactory.createBlogService().createBlog(blog);
-			System.out.println("文章保存成功");
+			ServiceFactory.createMessageServer().createMessage(message);
+			System.out.println("留言成功");
 			response.sendRedirect("../home.jsp");
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			System.out.println("文章保存失败");
+			System.out.println("留言失败");
 		}
 	}
 

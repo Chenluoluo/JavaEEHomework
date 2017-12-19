@@ -10,17 +10,12 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title><fmt:message key="blog.modify.title" /></title>
+<title><fmt:message key="picture.modify.title" /></title>
 <link rel="stylesheet" href="../static/css/uikit.min.css">
 <link rel="stylesheet" href="../static/css/uikit.gradient.min.css">
 <link rel="stylesheet" href="../static/css/awesome.css">
 <script src="../static/js/jquery.min.js"></script>
 <script src="../static/js/uikit.min.js"></script>
-<script type="text/javascript">
-	$(function() {
-		$('#vm').show();
-	});
-</script>
 </head>
 <body class="uk-height-1-1">
 	<nav class="uk-navbar uk-navbar-attached uk-margin-bottom">
@@ -29,16 +24,16 @@
 		<ul class="uk-navbar-nav">
 			<li><a href="../home.jsp"><i class="uk-icon-home"></i> <fmt:message
 						key="menu.home" /></a></li>
-			<li><a href="edit.jsp"><i class="uk-icon-book"></i> <fmt:message
-						key="menu.edit" /></a></li>
+			<li><a href="../blog/edit.jsp"><i class="uk-icon-book"></i>
+					<fmt:message key="menu.edit" /></a></li>
 			<li><a href="../message/message.jsp"><i
 					class="uk-icon-align-left"></i> <fmt:message key="menu.message" /></a></li>
 			<li><a href="../message/write.jsp"><i class="uk-icon-edit"></i>
 					<fmt:message key="menu.write" /></a></li>
 			<li><a href="../picture/picture.jsp"><i class="uk-icon-file"></i>
 					<fmt:message key="menu.picture" /></a></li>
-			<li><a href="../picture/upload.jsp"><i class="uk-icon-arrow-up"></i>
-					<fmt:message key="menu.upload" /></a></li>
+			<li><a href="../picture/upload.jsp"><i
+					class="uk-icon-arrow-up"></i> <fmt:message key="menu.upload" /></a></li>
 		</ul>
 		<div class="uk-navbar-flip">
 			<ul class="uk-navbar-nav">
@@ -64,8 +59,8 @@
 			<sql:setDataSource dataSource="jdbc/mysql" var="mysql"
 				scope="request" />
 			<!-- 取得查询结果集 -->
-			<sql:query sql="select * from HW_Blog where number=?"
-				dataSource="${ mysql }" var="listBlog" scope="request">
+			<sql:query sql="select * from HW_Picture where number=?"
+				dataSource="${ mysql }" var="listPicture" scope="request">
 				<sql:param value="${ param.number }"></sql:param>
 			</sql:query>
 
@@ -81,45 +76,25 @@
 				</div>
 			</div>
 			<div id="vm" class="uk-width-2-3">
-				<c:forEach var="blog" items="${ listBlog.rows }">
+				<c:forEach var="picture" items="${ listPicture.rows }">
 
-					<form method="post" action="modify.do?number=${ blog.number }"
+					<form method="post" action="modify.do?number=${ picture.number }"
 						class="uk-form uk-form-stacked">
 						<div class="uk-alert uk-alert-danger uk-hidden"></div>
 						<div class="uk-form-row">
 							<label class="uk-form-label"><fmt:message
-									key="blog.edit.form_title" /></label>
+									key="picture.modify.form_name" /></label>
 							<div class="uk-form-controls">
-								<input v-model="title" name="title" type="text"
-									placeholder="<fmt:message key="blog.edit.form_title" />"
-									class="uk-width-1-1" value="${ blog.title }">
+								<input v-model="name" name="name" type="text"
+									placeholder="<fmt:message key="picture.modify.form_name" />"
+									class="uk-width-1-1" value="${ picture.name }">
 							</div>
 						</div>
 						<div class="uk-form-row">
 							<label class="uk-form-label"><fmt:message
-									key="blog.edit.form_type" /></label>
+									key="picture.modify.form_picture" /></label>
 							<div class="uk-form-controls">
-								<textarea v-model="type" rows="1" name="type"
-									placeholder="<fmt:message key="blog.edit.form_type" />"
-									class="uk-width-1-1" style="resize: none;">${ blog.type }</textarea>
-							</div>
-						</div>
-						<div class="uk-form-row">
-							<label class="uk-form-label"><fmt:message
-									key="blog.edit.form_decoration" /></label>
-							<div class="uk-form-controls">
-								<textarea v-model="decoration" rows="4" name="decoration"
-									placeholder="<fmt:message key="blog.edit.form_decoration" />"
-									class="uk-width-1-1" style="resize: none;">${ blog.decoration }</textarea>
-							</div>
-						</div>
-						<div class="uk-form-row">
-							<label class="uk-form-label"><fmt:message
-									key="blog.edit.form_text" /></label>
-							<div class="uk-form-controls">
-								<textarea v-model="text" rows="16" name="text"
-									placeholder="<fmt:message key="blog.edit.form_text" />"
-									class="uk-width-1-1" style="resize: none;">${ blog.text }</textarea>
+								<img src="showimage.do?number=${ param.number }">
 							</div>
 						</div>
 						<div class="uk-form-row">

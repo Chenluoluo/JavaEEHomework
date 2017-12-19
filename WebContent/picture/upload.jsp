@@ -92,7 +92,7 @@
 						<li><a href="../home.jsp"><fmt:message key="menu.home" /></a></li>
 						<li><a href="../picture/picture.jsp"><fmt:message
 									key="menu.picture" /></a></li>
-						<li><a href="../comment/comment.jsp"><fmt:message
+						<li><a href="../message/message.jsp"><fmt:message
 									key="menu.message" /></a></li>
 					</ul>
 				</div>

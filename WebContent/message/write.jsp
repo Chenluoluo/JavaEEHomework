@@ -10,17 +10,12 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title><fmt:message key="blog.modify.title" /></title>
+<title><fmt:message key="message.write.title" /></title>
 <link rel="stylesheet" href="../static/css/uikit.min.css">
 <link rel="stylesheet" href="../static/css/uikit.gradient.min.css">
 <link rel="stylesheet" href="../static/css/awesome.css">
 <script src="../static/js/jquery.min.js"></script>
 <script src="../static/js/uikit.min.js"></script>
-<script type="text/javascript">
-	$(function() {
-		$('#vm').show();
-	});
-</script>
 </head>
 <body class="uk-height-1-1">
 	<nav class="uk-navbar uk-navbar-attached uk-margin-bottom">
@@ -29,16 +24,16 @@
 		<ul class="uk-navbar-nav">
 			<li><a href="../home.jsp"><i class="uk-icon-home"></i> <fmt:message
 						key="menu.home" /></a></li>
-			<li><a href="edit.jsp"><i class="uk-icon-book"></i> <fmt:message
-						key="menu.edit" /></a></li>
+			<li><a href="../blog/edit.jsp"><i class="uk-icon-book"></i>
+					<fmt:message key="menu.edit" /></a></li>
 			<li><a href="../message/message.jsp"><i
 					class="uk-icon-align-left"></i> <fmt:message key="menu.message" /></a></li>
 			<li><a href="../message/write.jsp"><i class="uk-icon-edit"></i>
 					<fmt:message key="menu.write" /></a></li>
 			<li><a href="../picture/picture.jsp"><i class="uk-icon-file"></i>
 					<fmt:message key="menu.picture" /></a></li>
-			<li><a href="../picture/upload.jsp"><i class="uk-icon-arrow-up"></i>
-					<fmt:message key="menu.upload" /></a></li>
+			<li><a href="../picture/upload.jsp"><i
+					class="uk-icon-arrow-up"></i> <fmt:message key="menu.upload" /></a></li>
 		</ul>
 		<div class="uk-navbar-flip">
 			<ul class="uk-navbar-nav">
@@ -60,79 +55,58 @@
 	<div class="uk-container uk-container-center">
 		<div class="uk-grid">
 			<!-- content -->
-			<!-- 配置数据源 -->
-			<sql:setDataSource dataSource="jdbc/mysql" var="mysql"
-				scope="request" />
-			<!-- 取得查询结果集 -->
-			<sql:query sql="select * from HW_Blog where number=?"
-				dataSource="${ mysql }" var="listBlog" scope="request">
-				<sql:param value="${ param.number }"></sql:param>
-			</sql:query>
-
 			<div class="uk-width-1-1 uk-margin-bottom">
 				<div class="uk-panel uk-panel-box">
 					<ul class="uk-breadcrumb">
 						<li><a href="../home.jsp"><fmt:message key="menu.home" /></a></li>
 						<li><a href="../picture/picture.jsp"><fmt:message
 									key="menu.picture" /></a></li>
-						<li><a href="../comment/comment.jsp"><fmt:message
+						<li><a href="../message/message.jsp"><fmt:message
 									key="menu.message" /></a></li>
 					</ul>
 				</div>
 			</div>
+			
 			<div id="vm" class="uk-width-2-3">
-				<c:forEach var="blog" items="${ listBlog.rows }">
-
-					<form method="post" action="modify.do?number=${ blog.number }"
-						class="uk-form uk-form-stacked">
-						<div class="uk-alert uk-alert-danger uk-hidden"></div>
-						<div class="uk-form-row">
-							<label class="uk-form-label"><fmt:message
-									key="blog.edit.form_title" /></label>
-							<div class="uk-form-controls">
-								<input v-model="title" name="title" type="text"
-									placeholder="<fmt:message key="blog.edit.form_title" />"
-									class="uk-width-1-1" value="${ blog.title }">
-							</div>
+				<form method="post" action="write.do"
+					class="uk-form uk-form-stacked">
+					<div class="uk-alert uk-alert-danger uk-hidden"></div>
+					<div class="uk-form-row">
+						<label class="uk-form-label"><fmt:message
+								key="message.write.form_content" /></label>
+						<div class="uk-form-controls">
+							<textarea v-model="content" rows="16" name="content"
+								placeholder="<fmt:message key="message.write.form_content" />"
+								class="uk-width-1-1" style="resize: none;"></textarea>
 						</div>
-						<div class="uk-form-row">
-							<label class="uk-form-label"><fmt:message
-									key="blog.edit.form_type" /></label>
-							<div class="uk-form-controls">
-								<textarea v-model="type" rows="1" name="type"
-									placeholder="<fmt:message key="blog.edit.form_type" />"
-									class="uk-width-1-1" style="resize: none;">${ blog.type }</textarea>
-							</div>
-						</div>
-						<div class="uk-form-row">
-							<label class="uk-form-label"><fmt:message
-									key="blog.edit.form_decoration" /></label>
-							<div class="uk-form-controls">
-								<textarea v-model="decoration" rows="4" name="decoration"
-									placeholder="<fmt:message key="blog.edit.form_decoration" />"
-									class="uk-width-1-1" style="resize: none;">${ blog.decoration }</textarea>
-							</div>
-						</div>
-						<div class="uk-form-row">
-							<label class="uk-form-label"><fmt:message
-									key="blog.edit.form_text" /></label>
-							<div class="uk-form-controls">
-								<textarea v-model="text" rows="16" name="text"
-									placeholder="<fmt:message key="blog.edit.form_text" />"
-									class="uk-width-1-1" style="resize: none;">${ blog.text }</textarea>
-							</div>
-						</div>
-						<div class="uk-form-row">
-							<button type="submit" class="uk-button uk-button-primary">
-								<i class="uk-icon-save"></i>
-								<fmt:message key="blog.modify.save" />
-							</button>
-							<a href="../home.jsp" class="uk-button"><i
-								class="uk-icon-times"></i> <fmt:message key="blog.modify.cancel" /></a>
-						</div>
-					</form>
-
-				</c:forEach>
+					</div>
+					<div class="uk-form-row">
+						<button type="submit" class="uk-button uk-button-primary">
+							<i class="uk-icon-save"></i>
+							<fmt:message key="blog.edit.save" />
+						</button>
+						<a href="../home.jsp" class="uk-button"><i
+							class="uk-icon-times"></i> <fmt:message key="blog.edit.cancel" /></a>
+					</div>
+				</form>
+			</div>
+			
+			<div class="uk-width-medium-1-4">
+				<div class="uk-panel uk-panel-header">
+					<h3 class="uk-panel-title">
+						<fmt:message key="friendly_link.title" />
+					</h3>
+					<ul class="uk-list uk-list-line">
+						<li><i class="uk-icon-thumbs-o-up"></i> <a target="_blank"
+							href="#">编程</a></li>
+						<li><i class="uk-icon-thumbs-o-up"></i> <a target="_blank"
+							href="#">读书</a></li>
+						<li><i class="uk-icon-thumbs-o-up"></i> <a target="_blank"
+							href="#">Python教程</a></li>
+						<li><i class="uk-icon-thumbs-o-up"></i> <a target="_blank"
+							href="#">Git教程</a></li>
+					</ul>
+				</div>
 			</div>
 			<!-- // content -->
 		</div>

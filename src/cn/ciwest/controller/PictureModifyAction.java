@@ -1,31 +1,26 @@
 package cn.ciwest.controller;
 
 import java.io.IOException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import cn.ciwest.factory.ServiceFactory;
-import cn.ciwest.model.Blog;
-import cn.ciwest.model.User;
+import cn.ciwest.model.Picture;
 
 /**
- * Servlet implementation class BlogEditAction
+ * Servlet implementation class PictureModifyAction
  */
-@WebServlet("/blog/edit.do")
-public class BlogEditAction extends HttpServlet {
+@WebServlet("/picture/modify.do")
+public class PictureModifyAction extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public BlogEditAction() {
+	public PictureModifyAction() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
@@ -39,31 +34,19 @@ public class BlogEditAction extends HttpServlet {
 		// TODO Auto-generated method stub
 		request.setCharacterEncoding("UTF-8");
 
-		HttpSession session = request.getSession();
-
-		String title = request.getParameter("title");
-		String author = ((User) session.getAttribute("user")).getUsername();
-		String type = request.getParameter("type");
-		String decoration = request.getParameter("decoration");
-		String create_time = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
-		String alter_time = "";
-		String text = request.getParameter("text");
-		Blog blog = new Blog();
-		blog.setTitle(title);
-		blog.setAuthor(author);
-		blog.setType(type);
-		blog.setDecoration(decoration);
-		blog.setCreate_time(create_time);
-		blog.setAlter_time(alter_time);
-		blog.setText(text);
+		int number = Integer.parseInt(request.getParameter("number"));
+		String name = request.getParameter("name");
+		Picture picture = new Picture();
+		picture.setNumber(number);
+		picture.setName(name);
 		try {
-			ServiceFactory.createBlogService().createBlog(blog);
-			System.out.println("文章保存成功");
+			ServiceFactory.createPictureServer().modifyPicture(picture);
+			System.out.println("图片修改成功");
 			response.sendRedirect("../home.jsp");
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			System.out.println("文章保存失败");
+			System.out.println("图片修改失败");
 		}
 	}
 

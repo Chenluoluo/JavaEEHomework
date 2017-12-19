@@ -29,7 +29,7 @@ public class CommentDaoImpl implements CommentDao {
 	@Override
 	public Comment getComment(int number) throws Exception {
 		// TODO Auto-generated method stub
-		Comment comment = null;
+		Comment comment = new Comment();
 		String sql = "select * from HW_Comment where number=?";
 		Connection cn = ConnectionFactory.getConnection();
 		PreparedStatement ps = cn.prepareStatement(sql);
