@@ -96,11 +96,7 @@
 					<h3>
 						<fmt:message key="blog.view.comment_title" />
 					</h3>
-					<article class="uk-comment"> <header
-						class="uk-comment-header"> <img
-						class="uk-comment-avatar uk-border-circle" width="50" height="50"
-						src="../static/img/user.png">
-					<h4 class="uk-comment-title">「Stay hungry. Stay foolish.」</h4>
+					<article class="uk-comment">
 					</header>
 					<div class="uk-comment-body">
 						<form action="../comment/edit.do" method="post" id="form-comment"
@@ -123,26 +119,7 @@
 					<hr class="uk-article-divider">
 				</div>
 			</div>
-
-
-			<div class="uk-width-medium-1-4">
-				<div class="uk-panel uk-panel-header">
-					<h3 class="uk-panel-title">
-						<fmt:message key="friendly_link.title" />
-					</h3>
-					<ul class="uk-list uk-list-line">
-						<li><i class="uk-icon-thumbs-o-up"></i> <a target="_blank"
-							href="#">编程</a></li>
-						<li><i class="uk-icon-thumbs-o-up"></i> <a target="_blank"
-							href="#">读书</a></li>
-						<li><i class="uk-icon-thumbs-o-up"></i> <a target="_blank"
-							href="#">Python教程</a></li>
-						<li><i class="uk-icon-thumbs-o-up"></i> <a target="_blank"
-							href="#">Git教程</a></li>
-					</ul>
-				</div>
-			</div>
-			<!-- // content -->
+			<!--  content -->
 		</div>
 	</div>
 

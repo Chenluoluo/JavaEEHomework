@@ -40,8 +40,8 @@
 					<fmt:message key="menu.write" /></a></li>
 			<li><a href="../picture/picture.jsp"><i class="uk-icon-file"></i>
 					<fmt:message key="menu.picture" /></a></li>
-			<li><a href="../picture/upload.jsp"><i class="uk-icon-arrow-up"></i>
-					<fmt:message key="menu.upload" /></a></li>
+			<li><a href="../picture/upload.jsp"><i
+					class="uk-icon-arrow-up"></i> <fmt:message key="menu.upload" /></a></li>
 		</ul>
 		<div class="uk-navbar-flip">
 			<ul class="uk-navbar-nav">
@@ -95,22 +95,69 @@
 					</article>
 				</c:forEach>
 				<hr class="uk-article-divider">
+
+				<div class="uk-width-medium-3-4">
+					<h3>
+						<fmt:message key="blog.view.comment" />
+					</h3>
+					<!-- 配置数据源 -->
+					<sql:setDataSource dataSource="jdbc/mysql" var="mysql"
+						scope="request" />
+					<!-- 取得查询结果集 -->
+					<sql:query sql="select * from HW_Comment where blognumber = ?"
+						dataSource="${ mysql }" var="listComment" scope="request">
+						<sql:param value="${ param.number }"></sql:param>
+					</sql:query>
+					<c:forEach var="comment" items="${ listComment.rows }">
+						<c:choose>
+							<c:when test="${ comment.username == user.getUsername() }">
+								<article class="uk-comment uk-comment-primary"> <header
+									class="uk-comment-header"> <img
+									class="uk-comment-avatar" src="../static/img/usericon.svg"
+									width="50" height="50" alt="">
+								<h4 class="uk-comment-title">${ comment.username }</h4>
+								<ul class="uk-comment-meta uk-subnav uk-subnav-line">
+									<li><span>${ comment.time }</span></li>
+									<li><a href="remove.do?number=${ comment.number }"
+										style="color: red"><fmt:message
+												key="message.message.remove" /></a></li>
+								</ul>
+								</header>
+								<div class="uk-comment-body">
+									<p>${ comment.content }</p>
+								</div>
+								</article>
+								<hr class="uk-article-divider">
+							</c:when>
+							<c:otherwise>
+								<article class="uk-comment"> <header
+									class="uk-comment-header"> <img
+									class="uk-comment-avatar" src="../static/img/usericon.svg"
+									width="50" height="50" alt="">
+								<h4 class="uk-comment-title">${ comment.username }</h4>
+								<div class="uk-comment-meta">${ comment.time }</div>
+								</header>
+								<div class="uk-comment-body">
+									<p>${ comment.content }</p>
+								</div>
+								</article>
+								<hr class="uk-article-divider">
+							</c:otherwise>
+						</c:choose>
+					</c:forEach>
+				</div>
+
 				<div class="uk-width-medium-3-4">
 					<h3>
 						<fmt:message key="blog.view.comment_title" />
 					</h3>
-					<article class="uk-comment"> <header
-						class="uk-comment-header"> <img
-						class="uk-comment-avatar uk-border-circle" width="50" height="50"
-						src="../static/img/user.png">
-					<h4 class="uk-comment-title">「Stay hungry. Stay foolish.」</h4>
-					</header>
+					<article class="uk-comment">
 					<div class="uk-comment-body">
-						<form action="../comment/edit.do" method="post" id="form-comment"
-							class="uk-form">
+						<form action="../comment/edit.do?blognumber=${ param.number }"
+							method="post" id="form-comment" class="uk-form">
 							<div class="uk-alert uk-alert-danger uk-hidden"></div>
 							<div class="uk-form-row">
-								<textarea name="context" rows="6"
+								<textarea name="content" rows="6"
 									placeholder="<fmt:message key="blog.view.comment_tip" />"
 									style="width: 100%; resize: none;"></textarea>
 							</div>
@@ -125,6 +172,8 @@
 					</article>
 					<hr class="uk-article-divider">
 				</div>
+
+
 			</div>
 
 

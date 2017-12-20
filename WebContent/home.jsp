@@ -28,12 +28,12 @@
 						key="menu.edit" /></a></li>
 			<li><a href="message/message.jsp"><i
 					class="uk-icon-align-left"></i> <fmt:message key="menu.message" /></a></li>
-			<li><a href="message/write.jsp"><i
-					class="uk-icon-edit"></i> <fmt:message key="menu.write" /></a></li>
+			<li><a href="message/write.jsp"><i class="uk-icon-edit"></i>
+					<fmt:message key="menu.write" /></a></li>
 			<li><a href="picture/picture.jsp"><i class="uk-icon-file"></i>
 					<fmt:message key="menu.picture" /></a></li>
-			<li><a href="picture/upload.jsp"><i
-					class="uk-icon-arrow-up"></i> <fmt:message key="menu.upload" /></a></li>
+			<li><a href="picture/upload.jsp"><i class="uk-icon-arrow-up"></i>
+					<fmt:message key="menu.upload" /></a></li>
 		</ul>
 		<div class="uk-navbar-flip">
 			<ul class="uk-navbar-nav">
@@ -70,7 +70,8 @@
 
 					<article class="uk-article">
 					<h2>
-						<a href="blog/view.jsp?number=${ blog.number }&author=${ blog.author }">${ blog.title }</a>
+						<a
+							href="blog/view.jsp?number=${ blog.number }&author=${ blog.author }">${ blog.title }</a>
 					</h2>
 					<p class="uk-article-meta">${ blog.author }
 						<fmt:message key="home.published_in" />
@@ -78,31 +79,14 @@
 					</p>
 					<p>${ blog.decoration }</p>
 					<p>
-						<a href="blog/view.jsp?number=${ blog.number }&author=${ blog.author }"><fmt:message
+						<a
+							href="blog/view.jsp?number=${ blog.number }&author=${ blog.author }"><fmt:message
 								key="home.keepreading" /><i class="uk-icon-angle-double-right"></i></a>
 					</p>
 					</article>
 					<hr class="uk-article-divider">
 
 				</c:forEach>
-			</div>
-
-			<div class="uk-width-medium-1-4">
-				<div class="uk-panel uk-panel-header">
-					<h3 class="uk-panel-title">
-						<fmt:message key="friendly_link.title" />
-					</h3>
-					<ul class="uk-list uk-list-line">
-						<li><i class="uk-icon-thumbs-o-up"></i> <a target="_blank"
-							href="#">编程</a></li>
-						<li><i class="uk-icon-thumbs-o-up"></i> <a target="_blank"
-							href="#">读书</a></li>
-						<li><i class="uk-icon-thumbs-o-up"></i> <a target="_blank"
-							href="#">Python教程</a></li>
-						<li><i class="uk-icon-thumbs-o-up"></i> <a target="_blank"
-							href="#">Git教程</a></li>
-					</ul>
-				</div>
 			</div>
 			<!-- content -->
 		</div>

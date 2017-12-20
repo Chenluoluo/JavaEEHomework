@@ -82,7 +82,6 @@
 			</div>
 			<div id="vm" class="uk-width-2-3">
 				<c:forEach var="blog" items="${ listBlog.rows }">
-
 					<form method="post" action="modify.do?number=${ blog.number }"
 						class="uk-form uk-form-stacked">
 						<div class="uk-alert uk-alert-danger uk-hidden"></div>
