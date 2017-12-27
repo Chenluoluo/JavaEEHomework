@@ -2,6 +2,7 @@ package cn.ciwest.listener;
 
 import java.sql.Connection;
 
+import javax.servlet.ServletContext;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 import javax.servlet.annotation.WebListener;
@@ -43,6 +44,11 @@ public class ServerStartStopListener implements ServletContextListener {
 	 */
 	public void contextInitialized(ServletContextEvent sce) {
 		// TODO Auto-generated method stub
+		ServletContext application=sce.getServletContext();
+		//服务器启动后，设置在线人数为0
+		application.setAttribute("onlinenum", 0);
+		//服务器启动后，设置网站点击次数为0
+		application.setAttribute("clicknum", 0);
 		System.out.println("服务器已启动");
 	}
 

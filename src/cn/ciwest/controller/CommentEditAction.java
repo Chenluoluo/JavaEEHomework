@@ -40,6 +40,7 @@ public class CommentEditAction extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 
 		HttpSession session = request.getSession();
+		String author = request.getParameter("author");
 		int blognumber = Integer.parseInt(request.getParameter("blognumber"));
 		String username = ((User) session.getAttribute("user")).getUsername();
 		String content = request.getParameter("content");
@@ -52,11 +53,12 @@ public class CommentEditAction extends HttpServlet {
 		try {
 			ServiceFactory.createCommentServer().createComment(comment);
 			System.out.println("评论成功");
-			response.sendRedirect("../home.jsp");
+			response.sendRedirect("../blog/view.jsp?number=" + blognumber + "&author=" + author);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			System.out.println("评论失败");
+			response.sendRedirect("commentFailed.jsp");
 		}
 	}
 

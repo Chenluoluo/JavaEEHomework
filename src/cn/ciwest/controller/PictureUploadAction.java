@@ -80,15 +80,17 @@ public class PictureUploadAction extends HttpServlet {
 				}
 			}
 			System.out.println("图片保存成功");
-			response.sendRedirect("../home.jsp");
+			response.sendRedirect("picture.jsp");
 		} catch (FileUploadException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			System.out.println("图片保存失败");
+			response.sendRedirect("modifyFailed.jsp");
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			System.out.println("图片保存失败");
+			response.sendRedirect("modifyFailed.jsp");
 		}
 	}
 

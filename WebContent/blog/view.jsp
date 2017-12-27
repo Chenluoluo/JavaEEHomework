@@ -118,7 +118,7 @@
 								<h4 class="uk-comment-title">${ comment.username }</h4>
 								<ul class="uk-comment-meta uk-subnav uk-subnav-line">
 									<li><span>${ comment.time }</span></li>
-									<li><a href="remove.do?number=${ comment.number }"
+									<li><a href="../comment/remove.do?blognumber=${ param.number }&number=${ comment.number }&author=${ param.author }"
 										style="color: red"><fmt:message
 												key="message.message.remove" /></a></li>
 								</ul>
@@ -153,7 +153,7 @@
 					</h3>
 					<article class="uk-comment">
 					<div class="uk-comment-body">
-						<form action="../comment/edit.do?blognumber=${ param.number }"
+						<form action="../comment/edit.do?blognumber=${ param.number }&author=${ param.author }"
 							method="post" id="form-comment" class="uk-form">
 							<div class="uk-alert uk-alert-danger uk-hidden"></div>
 							<div class="uk-form-row">
@@ -171,27 +171,6 @@
 					</div>
 					</article>
 					<hr class="uk-article-divider">
-				</div>
-
-
-			</div>
-
-
-			<div class="uk-width-medium-1-4">
-				<div class="uk-panel uk-panel-header">
-					<h3 class="uk-panel-title">
-						<fmt:message key="friendly_link.title" />
-					</h3>
-					<ul class="uk-list uk-list-line">
-						<li><i class="uk-icon-thumbs-o-up"></i> <a target="_blank"
-							href="#">编程</a></li>
-						<li><i class="uk-icon-thumbs-o-up"></i> <a target="_blank"
-							href="#">读书</a></li>
-						<li><i class="uk-icon-thumbs-o-up"></i> <a target="_blank"
-							href="#">Python教程</a></li>
-						<li><i class="uk-icon-thumbs-o-up"></i> <a target="_blank"
-							href="#">Git教程</a></li>
-					</ul>
 				</div>
 			</div>
 			<!-- // content -->

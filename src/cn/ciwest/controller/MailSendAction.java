@@ -6,22 +6,22 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
-import cn.ciwest.factory.ServiceFactory;
-import cn.ciwest.model.User;
+import com.ciwest.tool.MailTool;
+
+import cn.ciwest.model.Mail;
 
 /**
- * Servlet implementation class UserLoginAction
+ * Servlet implementation class MailSendAction
  */
-@WebServlet("/user/login.do")
-public class UserLoginAction extends HttpServlet {
+@WebServlet("/mailsend.do")
+public class MailSendAction extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public UserLoginAction() {
+	public MailSendAction() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
@@ -33,31 +33,23 @@ public class UserLoginAction extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		HttpSession session = request.getSession();
-		
-		String username = request.getParameter("username");
-		String password = request.getParameter("password");
-		User user = new User();
-		
+		request.setCharacterEncoding("UTF-8");
+		String from = request.getParameter("form");
+		String subject = request.getParameter("subject");
+		String content = request.getParameter("content");
+
+		Mail mail = new Mail();
+		mail.setFrom(from);
+		mail.setSubject(subject);
+		mail.setContent(content);
 		try {
-			if (ServiceFactory.createUserService().getUser(username) == null) {
-				System.out.println("用户"+username+"不存在");
-				response.sendRedirect("loginNoUser.jsp");
-			} else {
-				user = ServiceFactory.createUserService().getUser(username);
-				System.out.println("用户"+username+"存在");
-				if(user.getPassword().equals(password)) {
-					System.out.println("用户："+username+" 登录成功");
-					session.setAttribute("user", user);
-					response.sendRedirect("loginSucceed.jsp");
-				} else {
-					System.out.println("用户："+username+" 密码错误");
-					response.sendRedirect("loginFailed.jsp");
-				}
-			}
+			MailTool.sendMail(mail);
+			System.out.println("邮件发送成功");
+			response.sendRedirect("home.jsp");
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			System.out.println("邮件发送失败");
 		}
 
 	}

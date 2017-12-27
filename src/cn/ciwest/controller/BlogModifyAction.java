@@ -60,6 +60,7 @@ public class BlogModifyAction extends HttpServlet {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			System.out.println("文章修改失败");
+			response.sendRedirect("modifyFailed.jsp");
 		}
 	}
 

@@ -42,11 +42,12 @@ public class PictureModifyAction extends HttpServlet {
 		try {
 			ServiceFactory.createPictureServer().modifyPicture(picture);
 			System.out.println("图片修改成功");
-			response.sendRedirect("../home.jsp");
+			response.sendRedirect("picture.jsp");
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			System.out.println("图片修改失败");
+			response.sendRedirect("modifyFailed.jsp");
 		}
 	}
 

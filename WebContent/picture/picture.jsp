@@ -76,8 +76,9 @@
 						${ picture.create_time }
 					</p>
 					<p>
-						<img src="showimage.do?number=${ picture.number }" width="150px"
-							height="100px">
+						<a class="uk-thumbnail uk-thumbnail-small"
+							href="view.jsp?number=${ picture.number }&author=${ picture.author }"><img
+							src="showimage.do?number=${ picture.number }"></a>
 					</p>
 					<p>
 						<a

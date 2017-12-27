@@ -53,11 +53,12 @@ public class MessageWriteAction extends HttpServlet {
 		try {
 			ServiceFactory.createMessageServer().createMessage(message);
 			System.out.println("留言成功");
-			response.sendRedirect("../home.jsp");
+			response.sendRedirect("message.jsp");
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			System.out.println("留言失败");
+			response.sendRedirect("writeFailed.jsp");
 		}
 	}
 

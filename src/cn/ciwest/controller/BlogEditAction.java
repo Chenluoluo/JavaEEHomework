@@ -64,6 +64,7 @@ public class BlogEditAction extends HttpServlet {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			System.out.println("文章保存失败");
+			response.sendRedirect("editFailed.jsp");
 		}
 	}
 

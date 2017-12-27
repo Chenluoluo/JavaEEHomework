@@ -92,7 +92,8 @@
 					<img src="showimage.do?number=${ param.number }"> </article>
 				</c:forEach>
 				<hr class="uk-article-divider">
-				<div class="uk-width-medium-3-4">
+				
+<%-- 				<div class="uk-width-medium-3-4">
 					<h3>
 						<fmt:message key="blog.view.comment_title" />
 					</h3>
@@ -117,7 +118,9 @@
 					</div>
 					</article>
 					<hr class="uk-article-divider">
-				</div>
+				</div> 
+				--%>
+				
 			</div>
 			<!--  content -->
 		</div>

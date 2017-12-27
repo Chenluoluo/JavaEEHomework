@@ -36,7 +36,7 @@ public class MessageRemoveAction extends HttpServlet {
 		try {
 			ServiceFactory.createMessageServer().removeMessage(number);
 			System.out.println("留言删除成功");
-			response.sendRedirect("../home.jsp");
+			response.sendRedirect("message.jsp");
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

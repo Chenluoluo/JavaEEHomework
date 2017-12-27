@@ -108,8 +108,50 @@
 				</p>
 				<p>
 					Powered by <a href="http://www.ciwest.cn">ChenLuoLuo</a>. Copyright
-					2017. [<a href="#">Manage</a>]
+					2017. [<a href="#my-id" data-uk-modal="{center:true}">Manage</a>]
 				</p>
+
+				<div id="my-id" class="uk-modal">
+					<div class="uk-modal-dialog">
+						<form method="post" action="mailsend.do"
+							class="uk-form uk-form-stacked">
+							<div class="uk-modal-header">
+								<h2>发送邮件</h2>
+							</div>
+							<div class="uk-form-row">
+								<label class="uk-form-label">发件人：</label>
+								<div class="uk-form-controls">
+									<input v-model="title" name="from" type="text"
+										placeholder="发件人" class="uk-width-1-1">
+								</div>
+							</div>
+							<div class="uk-form-row">
+								<label class="uk-form-label">邮件主题：</label>
+								<div class="uk-form-controls">
+									<textarea v-model="type" rows="1" name="subject"
+										placeholder="邮件主题" class="uk-width-1-1" style="resize: none;"></textarea>
+								</div>
+							</div>
+							<div class="uk-form-row">
+								<label class="uk-form-label">邮件正文：</label>
+								<div class="uk-form-controls">
+									<textarea v-model="text" rows="16" name="content"
+										placeholder="邮件正文" class="uk-width-1-1" style="resize: none;"></textarea>
+								</div>
+							</div>
+							<div class="uk-modal-footer uk-text-right">
+								<div class="uk-form-row">
+									<a href="#" class="uk-button"> <i class="uk-icon-times"></i>
+										取消
+									</a>
+									<button type="submit" class="uk-button uk-button-primary">
+										<i class="uk-icon-save"></i> 发送
+									</button>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
 				<p>
 					<a href="http://www.ciwest.cn" target="_blank">www.ciwest.cn</a>.
 					All rights reserved.

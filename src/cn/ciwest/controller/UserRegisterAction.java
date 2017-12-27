@@ -52,6 +52,7 @@ public class UserRegisterAction extends HttpServlet {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			System.out.println("用户注册失败");
+			response.sendRedirect("registerFailed.jsp");
 		}
 	}
 

@@ -51,6 +51,12 @@ public class LoginCheckFilter implements Filter {
 		System.out.println(uri);
 		if (uri.equals("/JavaeeHomework/user/login.jsp") || uri.equals("/JavaeeHomework/user/register.jsp")) {
 			chain.doFilter(request, response);
+		} else if (uri.equals("/JavaeeHomework/user/loginFailed.jsp")){
+			chain.doFilter(request, response);
+		} else if (uri.equals("/JavaeeHomework/user/loginNoUser.jsp")){
+			chain.doFilter(request, response);
+		} else if (uri.equals("/JavaeeHomework/error/error.jsp")){
+			chain.doFilter(request, response);
 		} else {
 			if (session == null) {
 				System.out.println("用户未登录");

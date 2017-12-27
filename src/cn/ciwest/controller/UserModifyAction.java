@@ -50,6 +50,7 @@ public class UserModifyAction extends HttpServlet {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			System.out.println("信息修改失败");
+			response.sendRedirect("modifyFailed.jsp");
 		}
 		
 	}

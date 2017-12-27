@@ -34,7 +34,7 @@ public class PictureRemoveAction extends HttpServlet {
 		try {
 			ServiceFactory.createPictureServer().removePicture(number);
 			System.out.println("图片删除成功");
-			response.sendRedirect("../home.jsp");
+			response.sendRedirect("picture.jsp");
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
